@@ -1,0 +1,1 @@
+window.$object_pool = null
