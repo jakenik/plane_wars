@@ -31,26 +31,28 @@ cc.Class({
 
     // onLoad () {},
 
-    pause() {
+    gameControls() {
         let spriteFrame
-        let Button = this.getComponent(cc.Button)
+        let Button = this.node.getComponent(cc.Button)
         
         if(this.gameStatus){
-            spriteFrame = this.stopSprite
-            cc.game.pause()
-        }else { 
-            
             spriteFrame = this.playSprite
-            cc.game.resume()
+        }else { 
+            spriteFrame = this.stopSprite
+            
         }
-        console.log(Button,spriteFrame);
-        
         Button.normalSprite = spriteFrame[0];
         Button.pressedSprite = spriteFrame[1];
         Button.hoverSprite = spriteFrame[1];
-        this.gameStatus = !this.gameStatus
+        setTimeout(() => {
+           this.gameStatus ? cc.game.pause() : cc.game.resume() 
+           this.gameStatus = !this.gameStatus
+        }, 50);
+        
+        
     },
 
+    
     start () {
 
     },

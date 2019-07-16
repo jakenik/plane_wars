@@ -21,7 +21,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
- 
+        console.log($object_pool)
     },
 
     start () {

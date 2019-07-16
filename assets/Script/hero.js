@@ -35,13 +35,13 @@ cc.Class({
     },
     
     fire() {
-        setInterval(()=>{
+        this.schedule(function() {
             let create = {
                 name: 'bullet',
                 parentNode: this.node.parent
             }
             this.object_pool.createEnemy(create).setCurrentPosition(this.node).fire(this.node)
-        }, this.fireRate)
+        }, this.fireRate / 1000);
     },
 
     initBullet() {

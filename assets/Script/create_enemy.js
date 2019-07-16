@@ -51,7 +51,7 @@ cc.Class({
 
     plant () { // 飞机工厂
         let background = cc.find('Canvas/background')
-        setInterval(()=>{
+        this.schedule(function() {
             let {prefab, currentElement} = this.aircraftAdd()
             if(prefab){
                 let enemy = this.object_pool.createEnemy({
@@ -67,7 +67,7 @@ cc.Class({
                 this.takeOff(node, background)
                 
             }
-        }, this.taktTime)
+        }, this.taktTime / 1000)
     },
 
     randomPosition (parent, node) { // 创建敌人的随机位置

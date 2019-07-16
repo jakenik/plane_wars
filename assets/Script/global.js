@@ -1,1 +1,1 @@
-window.$object_pool = null
+window.$object_pool = {}

@@ -41,9 +41,9 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.364532900528169,
-      "y": 0.364532900528169,
-      "z": 0.364532900528169
+      "x": 1,
+      "y": 1,
+      "z": 1
     },
     "_quat": {
       "__type__": "cc.Quat",
@@ -1196,7 +1196,7 @@
     },
     "component": "",
     "_componentId": "e9015FP7JdEy6OlSB7scgwT",
-    "handler": "pause",
+    "handler": "gameControls",
     "customEventData": ""
   },
   {
@@ -1257,7 +1257,7 @@
         "__uuid__": "c6573f9c-31c9-4569-8949-28a168ff3cc1"
       }
     ],
-    "_id": "86qCFgfJVJZrcx/+IShzqH"
+    "_id": "71Ww9aGJpL4YretzaZb9/g"
   },
   {
     "__type__": "88997954xVD+ozcnBT8te59",
