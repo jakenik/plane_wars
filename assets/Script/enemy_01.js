@@ -33,7 +33,9 @@ cc.Class({
         node.hide = false
         if(this.HP === 0) {
             let animName = `${name}_ruin`
+            let audioName = `${name}_down`
             node.stopAllActions()
+            $base.count(this.node.grade)
             anim.on('finished',()=>{
                 
                 // console.log('结束');
@@ -42,14 +44,14 @@ cc.Class({
                 node.hide = true
                 anim.node.runAction(cc.hide())
                 this.HP = this.getInitHp()
-                // console.log(this.getInitHp(), 'this.getInitHp()');
-                
+                // console.log(this, 'this.getInitHp()');
                 anim.setCurrentTime(0,animName)
                 node.ySpeed = this.ySpeed
                 object_pool.recyclePool({ name,node })
                 this.isHit = false
             },anim);
             anim.play(animName)
+            $base.audio.play(audioName)
         } else {
             
             let animName = `${name}_hit`

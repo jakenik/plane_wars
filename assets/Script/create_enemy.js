@@ -7,27 +7,26 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/en/scripting/life-cycle-callbacks.html
-
+const aircraftLoading = [{
+    quantity: 10,
+    chance: 65,
+    componentName: 'enemy_01',
+    grade: 1
+}, {
+    quantity: 5,
+    chance: 25.2,
+    componentName: 'enemy_01',
+    grade: 3
+}, {
+    quantity: 2,
+    chance: 9.8,
+    componentName: 'enemy_01',
+    grade: 5
+}]
 cc.Class({
     extends: cc.Component,
 
     properties: {
-        aircraftLoading: {
-            default: () => [{
-                quantity: 10,
-                chance: 65,
-                componentName: 'enemy_01'
-            }, {
-                quantity: 5,
-                chance: 25.2,
-                componentName: 'enemy_01'
-            }, {
-                quantity: 2,
-                chance: 9.8,
-                componentName: 'enemy_01'
-            }],
-            tooltip: '飞机装载'
-        },
         aircraft: {
             default: [],
             type: cc.Prefab,
@@ -62,6 +61,7 @@ cc.Class({
                 let node = enemy.node
                 node.quantity = currentElement.quantity
                 node.chance = currentElement.chance
+                node.grade = currentElement.grade
                 node.x = this.randomPosition(background, node)
                 node.y = (background.height/2)  + (node.height * 0.5)
                 this.takeOff(node, background)
@@ -99,7 +99,6 @@ cc.Class({
 
     createEnemy() { // 生成敌人
         let aircraft = this.aircraft
-        let aircraftLoading = this.aircraftLoading
         aircraft.forEach((element, index) => {
             if (!element) return
             let name = element.name
@@ -112,7 +111,6 @@ cc.Class({
     },
 
     aircraftAdd() { // 飞机添加
-        let aircraftLoading = this.aircraftLoading
         
         let num = Math.random()
         let index

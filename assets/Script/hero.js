@@ -22,6 +22,15 @@ cc.Class({
         },
         harm: {
             default: 5
+        },
+        bulletPrefab: {
+            default: null,
+            type: cc.Prefab,
+            tooltip: '初始创建子弹',
+        },
+        bulletName: {
+            default: 'bullet',
+            tooltip: '子弹名称'
         }
     },
 
@@ -37,7 +46,7 @@ cc.Class({
     fire() {
         this.schedule(function() {
             let create = {
-                name: 'bullet',
+                name: this.bulletName,
                 parentNode: this.node.parent
             }
             this.object_pool.createEnemy(create).setCurrentPosition(this.node).fire(this.node)
@@ -45,8 +54,7 @@ cc.Class({
     },
 
     initBullet() {
-        let init = {name: 'bullet', initCount: 10}
-        
+        let init = {name: this.bulletName, initCount: 10, prefab: this.bulletPrefab}
         this.object_pool.initPool(init)
     },
 
@@ -96,17 +104,31 @@ cc.Class({
             anim.setCurrentTime(0,animName)
             this.node.destroy()
             this.isHit = false
+            cc.director.loadScene ('game_over',function(){
+               
+            }) 
         },anim);
         anim.play(animName)
     },
 
     onCollisionEnter: function (other) { // 碰撞结束
-        console.log('击中');
-        
         if(this.isHit) return
         this.isHit = true
-        let component = other.getComponent(other.node.componentName)
-        this.ruin()
+        // let component = other.getComponent(other.node.componentName)
+        console.log(other.node.group);
+        
+        switch (other.node.group) {
+            case 'enemy':
+                this.ruin()
+                break;
+            case 'porp':
+                console.log(other.node); 
+                this.isHit = false
+                break;
+            default:
+                this.isHit = false
+                break;
+        }
         // console.log(component, other);
     }
 

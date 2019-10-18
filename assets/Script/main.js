@@ -12,21 +12,26 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        object_pool: {
-            default: null,
-            type: require('object_pool'),
-        }
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        console.log($object_pool)
+  
     },
 
     start () {
 
     },
+
+    resume() {
+        $base.countNumber = 0
+        cc.director.loadScene ('main',function(){
+            console.log('main is loaded');
+        }) 
+    }
+    
 
     // update (dt) {},
 });

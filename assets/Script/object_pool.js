@@ -12,11 +12,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        bulletPrefab: {
-            default: null,
-            type: cc.Prefab,
-            tooltip: '子弹',
-        }
+        
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -68,7 +64,7 @@ cc.Class({
     },
 
     onLoad () {
-        window.$object_pool = this
+        $base.set('objectPool', this)
     },
 
     // start () {
